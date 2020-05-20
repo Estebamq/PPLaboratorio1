@@ -1,0 +1,58 @@
+# depslib dependency file v1.0
+1590002076 source:c:\users\familia quiroz\desktop\pparcial2020\pparcial2020\choferes.c
+	<stdio.h>
+	<string.h>
+	"choferes.h"
+
+1590000066 c:\users\familia quiroz\desktop\pparcial2020\pparcial2020\choferes.h
+	"validation.h"
+
+1589472398 source:c:\users\familia quiroz\desktop\pparcial2020\pparcial2020\choferesdeposito.c
+	"choferesDeposito.h"
+	<stdio.h>
+	<string.h>
+
+1589472398 c:\users\familia quiroz\desktop\pparcial2020\pparcial2020\choferesdeposito.h
+	"deposito.h"
+
+1589582890 c:\users\familia quiroz\desktop\pparcial2020\pparcial2020\deposito.h
+	"choferes.h"
+
+1590003424 source:c:\users\familia quiroz\desktop\pparcial2020\pparcial2020\main.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"choferesCamiones.h"
+
+1589481463 source:c:\users\familia quiroz\desktop\pparcial2020\pparcial2020\deposito.c
+	<stdio.h>
+	<string.h>
+	"deposito.h"
+
+1589982899 c:\users\familia quiroz\desktop\pparcial2020\pparcial2020\validation.h
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+
+1590002076 source:c:\users\familia quiroz\desktop\pparcial2020\pparcial2020\validation.c
+	"validation.h"
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+
+1590003195 source:c:\users\familia quiroz\desktop\pparcial2020\pparcial2020\choferescamiones.c
+	"choferesCamiones.h"
+	<stdio.h>
+	<string.h>
+
+1590000066 c:\users\familia quiroz\desktop\pparcial2020\pparcial2020\choferescamiones.h
+	"camiones.h"
+
+1590003466 c:\users\familia quiroz\desktop\pparcial2020\pparcial2020\camiones.h
+	"choferes.h"
+
+1590003424 source:c:\users\familia quiroz\desktop\pparcial2020\pparcial2020\camiones.c
+	<stdio.h>
+	<string.h>
+	"camiones.h"
+
