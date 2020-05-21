@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <string.h>
 #include "camiones.h"
-#define  ANIO   2010  //marca la cantidad de antiguedad en los camiones(en este caso 10 anios)
+
 
 
 //***********INICIALIZAR, HARCODEOCAMIONES******************************
@@ -273,7 +273,7 @@ int modificarCamiones(eCamiones camion[], int tamCamion,eChofer chofer[], int ta
 //*****************************MOSTRAR CAMIONES POR TIPO Y SU CHOFER******************************
 
 
-int MostrarListadoCamionesPorTipo(eCamiones listadoCamiones[], int tamC,eChofer listadoChofer[],int tamCho)
+int ordenarListadoCamionesPorTipo(eCamiones listadoCamiones[], int tamC,eChofer listadoChofer[],int tamCho)
 {
     int i;
     int j;
@@ -331,3 +331,70 @@ void MostrarListadoCamionesConMasDeAnio(eCamiones listadoCamiones[], int tamC,eC
         }
     }
 }
+//*****************MOSTRAR CAMION POR MARCA*********************************
+int MostrarListadoCamionesPorMarca(eCamiones listadoCamiones[], int tamC,eChofer listadoChofer[],int tamCho)
+{
+    int i;
+    int j;
+    int retorno=0;
+    char marca[20];
+    for(i=0;i<tamC-1;i++)
+        {
+            if(listadoCamiones[i].estadoCamiones ==OCUPADO)
+            {
+
+              for(j=i+1;j<tamC;j++)
+                {
+                    if(listadoCamiones[j].estadoCamiones ==OCUPADO && strcmpi(listadoCamiones[i].marca,listadoCamiones[j].marca)!=0)
+                    {
+                        printf("\t%s\n",listadoCamiones[j].marca);
+                        break;
+                    }
+
+                }
+
+            }
+        }
+
+    getDatoString("Elegir Marca de Camion: ","Error\n",1,10,3,marca);
+
+    for(i=0; i<tamC; i++)
+    {
+        if(listadoCamiones[i].estadoCamiones==OCUPADO && strcmpi(listadoCamiones[i].marca,marca)==0)
+        {
+            mostrarCamiones(listadoCamiones[i],listadoChofer,tamCho);
+            retorno=1;
+        }
+    }
+
+    return retorno;
+}
+
+
+float promedioAntiguedadCamiones(eCamiones Camiones[],int cantCamiones)
+{
+    float promedio=0;
+    int anioSuma=0;
+    int camionesSuma=0;
+    int anio;
+    int i;
+
+    for( i=0;i<cantCamiones;i++)
+    {
+        if(Camiones[i].estadoCamiones==OCUPADO)
+            {
+                anio=ANIOANTIGUEDAD - Camiones[i].anio;
+                anioSuma+=anio;
+                camionesSuma++;
+            }
+    }
+
+    if(camionesSuma!=0)
+        {
+            promedio=(float)anioSuma/camionesSuma;
+        }
+
+    return promedio;
+
+}
+

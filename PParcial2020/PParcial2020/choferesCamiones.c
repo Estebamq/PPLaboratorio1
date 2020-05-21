@@ -120,3 +120,78 @@ void MostrarChoferMasDeUnCamion(eChofer listadoChofer[], int cantChofer, eCamion
         }
     }
 }
+//**************************Mostrar Choferes ordenados por cantidad de camion*****************************
+
+void MostrarChoferCamionOrdenados(eChofer listadoChofer[], int cantChofer, eCamiones listadoCamiones[], int cantCamiones)
+{
+    int i;
+    int j;
+    eChofer auxChofer;
+
+    for(i=0; i<cantChofer;i++)
+    {
+        if(listadoChofer[i].estadoChofer==OCUPADO)
+        {
+            listadoChofer[i].cantCamiones=contarCantidadDeCamiones(listadoCamiones,cantCamiones,listadoChofer[i].idChofer);
+        }
+    }
+
+    for(i=0; i<cantChofer-1; i++)
+    {
+        for(j=i+1; j<cantChofer; j++)
+        {
+            if(listadoChofer[i].cantCamiones>listadoChofer[j].cantCamiones)//CAMBIAR PARA HACERLO ASCENDENTE O DESCENDENTE
+            {
+                auxChofer=listadoChofer[i];
+                listadoChofer[i]=listadoChofer[j];
+                listadoChofer[j]=auxChofer;
+            }
+        }
+    }
+
+    MostrarChoferCamiones(listadoChofer,cantChofer,listadoCamiones,cantCamiones);
+
+}
+
+//**************************Mostrar Choferes ordenados por cantidad de camion Y ALFABETICAMENTE*****************************
+
+void MostrarChoferCamionOrdenadosAlfa(eChofer listadoChofer[], int cantChofer, eCamiones listadoCamiones[], int cantCamiones)
+{
+    int i;
+    int j;
+    eChofer auxChofer;
+
+    for(i=0; i<cantChofer;i++)
+    {
+        if(listadoChofer[i].estadoChofer==OCUPADO)
+        {
+            listadoChofer[i].cantCamiones=contarCantidadDeCamiones(listadoCamiones,cantCamiones,listadoChofer[i].idChofer);
+        }
+    }
+
+    for(i=0; i<cantChofer-1; i++)
+    {
+        for(j=i+1; j<cantChofer; j++)
+        {
+            if(listadoChofer[i].cantCamiones>listadoChofer[j].cantCamiones)//CAMBIAR PARA HACERLO ASCENDENTE O DESCENDENTE
+            {
+                auxChofer=listadoChofer[i];
+                listadoChofer[i]=listadoChofer[j];
+                listadoChofer[j]=auxChofer;
+
+            }else if(listadoChofer[i].cantCamiones==listadoChofer[j].cantCamiones)
+            {
+                if(strcmpi(listadoChofer[i].apellido,listadoChofer[j].apellido)>0)//Cambiar el sentido de el orden del apellido
+                {
+                    auxChofer=listadoChofer[i];
+                    listadoChofer[i]=listadoChofer[j];
+                    listadoChofer[j]=auxChofer;
+                }
+            }
+        }
+    }
+
+    MostrarChoferCamiones(listadoChofer,cantChofer,listadoCamiones,cantCamiones);
+
+}
+

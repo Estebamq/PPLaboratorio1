@@ -32,3 +32,6 @@ int buscarChoferPorId(eChofer chofer[],int tamChofer,int idChofer);
 int altaChofer(eChofer chofer[],int cantCho, int idChofer);
 int modificarChofer(eChofer chofer[], int tamChofer);
 
+//********PROMEDIOS**************************************************
+float promedioEdadChoferes(eChofer chofer[],int cantChofer);
+int promedioCantidadChoferesMF(eChofer chofer[],int cantChofer);

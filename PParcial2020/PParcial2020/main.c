@@ -12,6 +12,8 @@ int main()
     int opcion;
     int idCamion=100;
     int idChofer=1000;
+    float promedioEdad;
+    float promedioAntiguedad;
 
     inicialiazarCamiones(listadoCamiones,TCAMIONES);
     inicializarChoferes(listadoChofer,TCHOFERES);
@@ -34,12 +36,14 @@ int main()
         MostrarChoferCamiones(listadoChofer, TCHOFERES, listadoCamiones, TCAMIONES);
         //-------------------------------------------------------------------------
 
+
+
         //************SEGUNDA PARTE***********************************************
         // ************ABM CAMIONES***********"
 
         //system("cls");
         printf("\n*******Alta Camiones*******\n");
-        printf("\n1-Alta Camiones: \n2-Baja Camiones: \n3-Modificar Camiones\n4-Mostrar Camiones con Chofer\n5-Alta de Chofer\n6-Baja de chofer\n7-Mostrar Camiones Por Tipo\n8-Modificar Chofer\n9-Mostrar choferes con mas de un camion\n10-Camiones con mas de 10 anios\n20-Salir.\nIngrese opcion: ");
+        printf("\n1-Alta Camiones: \n2-Baja Camiones: \n3-Modificar Camiones\n4-Mostrar Camiones con Chofer\n5-Alta de Chofer\n6-Baja de chofer\n7-Mostrar Camiones Por Tipo\n8-Modificar Chofer\n9-Mostrar choferes con mas de un camion\n10-Camiones con mas de 10 anios\n11-Mostrar camiones por marca\n12-Mostrar Choferes ordenados por cantidad de camion:\n13-Mostrar choferes ordenados por cantidad de camion y alfabeticamente\n14-Mostrar el promedio de las edades de los choferes\n15-Mostrar el promedio de antiguedad de camiones:\n 16-El promedio que tengo entre varones y mujeres: \n20-Salir.\nIngrese opcion: ");
         scanf("%d",&opcion);
         //system("pause");
         switch(opcion)
@@ -97,6 +101,8 @@ int main()
             //system("pause");
             break;
 
+
+
         //*******************TERCERA PARTE****************************************************
         //*****************CHOFER:ALTA-BAJA-ORDENAR ********************************************************
         case 5:
@@ -128,13 +134,14 @@ int main()
             break;
         case 7:
             //system("cls");
-            printf("\n*******ORDENAR CAMIONES POR TIPO Y MOSTRAR CHOFER*******\n\n");
-            if(MostrarListadoCamionesPorTipo(listadoCamiones,TCAMIONES,listadoChofer,TCHOFERES)==0)
+            printf("\n*******ORDENAR CAMIONES POR TIPO Y MOSTRAR CON CHOFER*******\n\n");
+            if(ordenarListadoCamionesPorTipo(listadoCamiones,TCAMIONES,listadoChofer,TCHOFERES)==0)
             {
                 printf("\n Error, no se puede mostrar\n");
             }
             //system("pause");
             break;
+
 
 
         //*******************CUARTA PARTE*****************************************************
@@ -167,6 +174,63 @@ int main()
             //system("pause");
             break;
 
+
+
+        //*******************QUINTA PARTE*****************************************************
+        case 11:
+            //system("cls");
+            printf("\n*******LISTAR CAMION POR MARCA *******\n\n");
+            if(MostrarListadoCamionesPorMarca(listadoCamiones,TCAMIONES,listadoChofer,TCHOFERES)==0)
+                {
+                    printf("\nMarca no registrada\n");
+                }
+
+            //system("pause");
+            break;
+        case 12:
+            //system("cls");
+            printf("\n*******LISTAR CHOFERES CON CAMIONES ORDENADOS POR CANTIDAD DE CAMION *******\n\n");
+            printf("\nID: \t Apellido: \t Nombre:\t DNI:   \t Legajo: \t Nacionalidad: \t  Telefono: \t Edad: \t Sexo: \n");
+            MostrarChoferCamionOrdenados(listadoChofer, TCHOFERES, listadoCamiones, TCAMIONES);
+            //system("pause");
+            break;
+        case 13:
+            //system("cls");
+            printf("\n*******LISTAR CHOFERES CON CAMIONES ORDENADOS POR CANTIDAD DE CAMION/ALFABETICAMENTE *******\n\n");
+            printf("\nID: \t Apellido: \t Nombre:\t DNI:   \t Legajo: \t Nacionalidad: \t  Telefono: \t Edad: \t Sexo: \n");
+            MostrarChoferCamionOrdenadosAlfa(listadoChofer, TCHOFERES, listadoCamiones, TCAMIONES);
+            //system("pause");
+            break;
+        case 14:
+            //system("cls");
+            printf("\n*******PROMEDIO DE EDAD ENTRE LOS CHOFERES*******\n\n");
+            promedioEdad=promedioEdadChoferes(listadoChofer,TCHOFERES);
+            if(promedioEdad!=0)
+                {
+                    printf("\nEl Promedio de edad de los choferes es: %.2f\n",promedioEdad);
+                }
+            //system("pause");
+            break;
+        case 15:
+            //system("cls");
+            printf("\n*******PROMEDIO DE ANTIGUEDAD DE CAMIONES*******\n\n");
+            promedioAntiguedad=promedioAntiguedadCamiones(listadoCamiones,TCAMIONES);
+            if(promedioAntiguedad!=0)
+                {
+                    printf("\nEl Promedio de Antiguedad de los camiones es: %.2f\n",promedioAntiguedad);
+                }
+            //system("pause");
+            break;
+        case 16:
+            //system("cls");
+            printf("\n*******PROMEDIO CANTIDAD DE MUJERES Y HOMBRES ENTRE EL TOTAL DE CHOFERES*******\n\n");
+
+            if(promedioCantidadChoferesMF(listadoChofer,TCHOFERES))
+                {
+                    printf("\nError\n");
+                }
+            //system("pause");
+            break;
         default:
             if(opcion !=20)
             {
@@ -179,9 +243,8 @@ int main()
 
 
 
-    //------------------------------------------------------------------------------------
 
-    //*******************QUINTA PARTE*****************************************************
+
     //-----------------------------------------------------------------------------------
     return 0;
 }

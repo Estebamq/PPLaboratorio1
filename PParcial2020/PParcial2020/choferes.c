@@ -234,3 +234,80 @@ int modificarChofer(eChofer chofer[], int tamChofer)
     return respuesta;
 
 }
+
+
+//********************PROMEDIO DE EDAD DE CHOFERES*************************************
+
+float promedioEdadChoferes(eChofer chofer[],int cantChofer)
+{
+    float promedio=0;
+    int edadSuma=0;
+    int choferSuma=0;
+    int i;
+
+    for( i=0; i<cantChofer; i++)
+    {
+        if(chofer[i].estadoChofer==OCUPADO)
+        {
+            edadSuma+=chofer[i].edad;
+            choferSuma++;
+        }
+    }
+
+    if(choferSuma!=0)
+    {
+        promedio=(float)edadSuma/choferSuma;
+    }
+
+    return promedio;
+
+}
+//****************PROMEDIO CANTIDAD MUJERES Y VARONES*******************
+int promedioCantidadChoferesMF(eChofer chofer[],int cantChofer)
+{
+    float promedioFemenino=0;
+    float promedioMasculino=0;
+    int respuesta=1;
+    int sumatotal=0;
+    int choferMSuma=0;
+    int choferFSuma=0;
+    int i;
+
+    for( i=0; i<cantChofer; i++)
+    {
+        if(chofer[i].estadoChofer==OCUPADO)
+        {
+            if(chofer[i].sexo=='f'||chofer[i].sexo=='F')
+            {
+
+                choferFSuma++;
+
+            }
+
+            if(chofer[i].sexo=='m'||chofer[i].sexo=='M')
+            {
+                choferMSuma++;
+                respuesta=0;
+            }
+            sumatotal++;
+        }
+    }
+
+    if(choferFSuma!=0)
+    {
+        promedioFemenino=(float)choferFSuma/sumatotal;
+    }
+
+    printf("\nEl promedio de Mujeres es: %.2f\n",promedioFemenino);
+
+    if(choferMSuma!=0)
+    {
+        promedioMasculino=(float)choferMSuma/sumatotal;
+    }
+     printf("\nEl promedio de Mujeres es: %.2f\n",promedioMasculino);
+
+
+
+    return respuesta;
+
+}
