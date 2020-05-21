@@ -99,6 +99,23 @@ int buscarLibreChofer(eChofer chofer[],int tamChofer)
     return indice;
 }
 
+int buscarOcupadoChofer(eChofer chofer[],int tamChofer)
+{
+    int i;
+    int indice=0;
+
+
+    for(i=0; i<tamChofer; i++)
+    {
+        if(chofer[i].estadoChofer==OCUPADO)
+        {
+            indice=1;
+            break;
+        }
+    }
+    return indice;
+}
+
 int buscarChoferPorId(eChofer chofer[],int tamChofer,int idChofer)
 {
     int i;
@@ -130,7 +147,7 @@ int altaChofer(eChofer chofer[],int tamChofer, int idChofer)
         if( getUnsignedInt("Ingrese Legajo: ","Error\n",1,5,3,&chofer[i].Legajo)==0 &&
                 getDatoString("Ingrese Apellido: ","Error\n",4,10,3,chofer[i].apellido)==0 &&
                 getDatoString("Ingrese Nombre: ","Error\n",4,10,3,chofer[i].nombre)==0 &&
-                getUnsignedInt("Ingrese D.N.I: ","Error\n",8,9,3,&chofer[i].dni)==0 &&
+                getUnsignedInt("Ingrese D.N.I: ","Error\n",7,16,3,&chofer[i].dni)==0 &&
                 getDatoString("Ingrese Nacionalidad: ","Error\n",4,10,3,chofer[i].nacionalidad)==0 &&
                 getDatoSexo("Ingrese sexo(f,m): ","Error",1,2,3,&chofer[i].sexo)==0 &&
                 getUnsignedInt("Ingrese Telefono: ","Error\n",5,9,3,&chofer[i].telefono)==0 &&
@@ -142,7 +159,7 @@ int altaChofer(eChofer chofer[],int tamChofer, int idChofer)
         }
         else
         {
-            printf("No Existe Hay Lugar Libre");
+            printf("\nNo Existe Hay Lugar Libre\n");
 
         }
     }
@@ -174,15 +191,18 @@ int modificarChofer(eChofer chofer[], int tamChofer)
         //MUESTRO LOS DATOS A MODIFICAR
         printf("\nID: \t Apellido: \t Nombre:\t DNI:   \t Legajo: \t Nacionalidad: \t  Telefono: \t Edad: \t Sexo: \n");
         MostrarChofer(chofer[i]);
-        getDatoString("esta seguro que desea Modificar?s/n: ","Error",1,2,2,&respuestaBaja);
+        getDatoString("esta seguro que desea Modificar?s/n: ","Error\n",1,2,2,&respuestaBaja);
 
         //---INICIA LA MODIFICACION-------------
         if(respuestaBaja =='s')
         {
             do
             {
+                system("cls");
+                MostrarChofer(chofer[i]);
                 printf("\nIngrese que desea modificar: \n1-Legajo:\n2-Apellido:\n3-Nombre:\n4-DNI:\n5-Nacionalida:\n6-Sexo:\n7-Telefono: \n8-Edad: \n9-salir de modificar:\n");
                 scanf("%d",&opcion);
+
                 switch(opcion)
                 {
                 case 1:
@@ -212,10 +232,11 @@ int modificarChofer(eChofer chofer[], int tamChofer)
                 default:
                     if(opcion!=9)
                     {
-                        printf("Opcion incorrecta");
+                        printf("\nOpcion incorrecta\n");
                     }
 
                 }
+                system("pause");
             }
             while(opcion!=9);
 

@@ -27,6 +27,7 @@ void MostrarListadoCamionesConMasDeAnio(eCamiones listadoCamiones[], int tamC,eC
 int MostrarListadoCamionesPorMarca(eCamiones listadoCamiones[], int tamC,eChofer listadoChofer[],int tamCho);
 //***********************BUSQUEDA: ESPACIO LIBRE- BUSCAR CAMION -BUSCAR CAMION POR ID*********
 int buscarLibreCam(eCamiones camiones[],int tam);
+int buscarOcupadoCam(eCamiones camiones[],int tam);
 eCamiones buscarCamion(eCamiones listadocamiones[],int tam,int idCamiones);
 //********************ALTA CAMION-BAJA CAMION-MODIFICACION************************************
 int altaCamiones(eCamiones camion[],int tamCam,eChofer chofer[],int cantCho,int idCamion);

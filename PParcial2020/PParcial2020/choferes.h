@@ -26,6 +26,7 @@ void MostrarListadoChofer(eChofer [], int );
 //*********BUSQUEDA:---****************************************
 eChofer buscarChofer(eChofer listadoChoferes[],int tam,int id);
 int buscarLibreChofer(eChofer chofer[],int tamChofer);
+int buscarOcupadoChofer(eChofer chofer[],int tamChofer);
 int buscarChoferPorId(eChofer chofer[],int tamChofer,int idChofer);
 
 //*********ALTA-MODIFICAR************************************************

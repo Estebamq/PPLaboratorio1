@@ -67,7 +67,7 @@ int bajaChoferCascada(eChofer chofer[],int tamCho,eCamiones camion[], int tamCam
         //*****************VALIDO SI EL USUARIO QUIERE DAR DE BAJA***********************************
         getDatoString("esta seguro que desea dar de baja?si/no: ","Error",1,3,2,respuestaBaja);
 
-        if(stricmp(respuestaBaja,"si")==0)
+        if(strcmpi(respuestaBaja,"si")==0)
         {
             i=buscarChoferPorId(chofer,tamCho,idChofer);// Busco ID para saber en que posicion esta el chofer
             chofer[i].estadoChofer=LIBRE;//baja chofer

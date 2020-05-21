@@ -64,15 +64,21 @@ void mostrarCamiones(eCamiones camion,eChofer listadoChofer[],int tamC)
 void MostrarListadoCamiones(eCamiones listadoCamiones[], int tamC,eChofer listadoChofer[],int tamCho)
 {
     int i;
-
+    int bandera=0;
 
     for(i=0; i<tamC; i++)
     {
         if(listadoCamiones[i].estadoCamiones==OCUPADO)
         {
             mostrarCamiones(listadoCamiones[i],listadoChofer,tamCho);
+            bandera=1;
         }
     }
+
+    if(bandera==0){
+            printf("\n\t\tNo hay Camiones\n");
+        }
+
 }
 
 //***********************BUSQUEDA: ESPACIO LIBRE- BUSCAR CAMION -BUSCAR CAMION POR ID*********
@@ -87,6 +93,23 @@ int buscarLibreCam(eCamiones camiones[],int tam)
         if(camiones[i].estadoCamiones==LIBRE)
         {
             indice=i;
+        }
+    }
+    return indice;
+}
+
+int buscarOcupadoCam(eCamiones camiones[],int tam)
+{
+    int i;
+    int indice=0;
+
+
+    for(i=0; i<tam; i++)
+    {
+        if(camiones[i].estadoCamiones==OCUPADO)
+        {
+            indice=1;
+            break;
         }
     }
     return indice;
@@ -196,7 +219,8 @@ int bajaCamiones(eCamiones camion[],int tamCam,eChofer chofer[], int tanCho)
         mostrarCamiones(auxCamion,chofer,tanCho);
         getDatoString("esta seguro que desea dar de baja?si/no: ","Error",1,3,2,respuestaBaja);
         if(stricmp(respuestaBaja,"si")==0)
-        {   i=buscarCamionPorId(camion,tamCam,idCamion);
+        {
+            i=buscarCamionPorId(camion,tamCam,idCamion);
             camion[i].estadoCamiones=LIBRE;
             respuesta=1;
         }
@@ -285,20 +309,24 @@ int ordenarListadoCamionesPorTipo(eCamiones listadoCamiones[], int tamC,eChofer 
     {
         for(j=i+1; j<tamC; j++)
         {
-            if(strcmp(listadoCamiones[i].tipo,listadoCamiones[j].tipo)>0)
+            if(listadoCamiones[i].estadoCamiones==OCUPADO&&listadoCamiones[j].estadoCamiones==OCUPADO)
             {
-                auxCamion=listadoCamiones[i];
-                listadoCamiones[i]=listadoCamiones[j];
-                listadoCamiones[j]=auxCamion;
+
+                if(strcmpi(listadoCamiones[i].tipo,listadoCamiones[j].tipo)>0)
+                {
+                    auxCamion=listadoCamiones[i];
+                    listadoCamiones[i]=listadoCamiones[j];
+                    listadoCamiones[j]=auxCamion;
+
+                }
                 retorno=1;
             }
         }
     }
 
-    if(retorno==1)
-    {
-        MostrarListadoCamiones(listadoCamiones,tamC,listadoChofer,tamCho);
-    }
+
+    MostrarListadoCamiones(listadoCamiones,tamC,listadoChofer,tamCho);
+
     return retorno;
 }
 
@@ -307,13 +335,13 @@ int contarCantidadDeCamiones(eCamiones camion[],int tamCamion,int idChofer)
 {
     int i;
     int contador=0;
-    for(i=0;i<tamCamion;i++)
+    for(i=0; i<tamCamion; i++)
+    {
+        if(camion[i].idChofer== idChofer)
         {
-            if(camion[i].idChofer== idChofer)
-            {
-                contador++;
-            }
+            contador++;
         }
+    }
     return contador;
 }
 
@@ -338,23 +366,23 @@ int MostrarListadoCamionesPorMarca(eCamiones listadoCamiones[], int tamC,eChofer
     int j;
     int retorno=0;
     char marca[20];
-    for(i=0;i<tamC-1;i++)
+    for(i=0; i<tamC-1; i++)
+    {
+        if(listadoCamiones[i].estadoCamiones ==OCUPADO)
         {
-            if(listadoCamiones[i].estadoCamiones ==OCUPADO)
+
+            for(j=i+1; j<tamC; j++)
             {
-
-              for(j=i+1;j<tamC;j++)
+                if(listadoCamiones[j].estadoCamiones ==OCUPADO && strcmpi(listadoCamiones[i].marca,listadoCamiones[j].marca)!=0)
                 {
-                    if(listadoCamiones[j].estadoCamiones ==OCUPADO && strcmpi(listadoCamiones[i].marca,listadoCamiones[j].marca)!=0)
-                    {
-                        printf("\t%s\n",listadoCamiones[j].marca);
-                        break;
-                    }
-
+                    printf("\t%s\n",listadoCamiones[j].marca);
+                    break;
                 }
 
             }
+
         }
+    }
 
     getDatoString("Elegir Marca de Camion: ","Error\n",1,10,3,marca);
 
@@ -379,20 +407,20 @@ float promedioAntiguedadCamiones(eCamiones Camiones[],int cantCamiones)
     int anio;
     int i;
 
-    for( i=0;i<cantCamiones;i++)
+    for( i=0; i<cantCamiones; i++)
     {
         if(Camiones[i].estadoCamiones==OCUPADO)
-            {
-                anio=ANIOANTIGUEDAD - Camiones[i].anio;
-                anioSuma+=anio;
-                camionesSuma++;
-            }
+        {
+            anio=ANIOANTIGUEDAD - Camiones[i].anio;
+            anioSuma+=anio;
+            camionesSuma++;
+        }
     }
 
     if(camionesSuma!=0)
-        {
-            promedio=(float)anioSuma/camionesSuma;
-        }
+    {
+        promedio=(float)anioSuma/camionesSuma;
+    }
 
     return promedio;
 
